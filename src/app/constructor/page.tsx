@@ -1,12 +1,6 @@
 'use client'
 
 import { useState, useCallback, useRef, useEffect } from 'react'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Конструктор приглашений',
-  description: 'Создайте красивое свадебное приглашение',
-}
 import { Type, Heart, Calendar, Image, Video, Music, MapPin, Clock, Timer, Users, MessageSquare, Plus, Settings, Upload, Trash2 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { nanoid } from 'nanoid'
