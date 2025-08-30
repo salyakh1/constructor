@@ -48,12 +48,17 @@ interface Invite {
 }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export default function InvitePage({ params }: PageProps) {
+  const [slug, setSlug] = useState<string>('')
+  
+  useEffect(() => {
+    params.then(({ slug }) => setSlug(slug))
+  }, [params])
   const [invite, setInvite] = useState<Invite | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -67,7 +72,7 @@ export default function InvitePage({ params }: PageProps) {
   useEffect(() => {
     const fetchInvitation = async () => {
       try {
-        const response = await fetch(`/api/invites/${params.slug}`)
+        const response = await fetch(`/api/invites/${slug}`)
         
         if (response.status === 404) {
           setError('Приглашение не найдено')
@@ -114,8 +119,10 @@ export default function InvitePage({ params }: PageProps) {
       }
     }
 
-    fetchInvitation()
-  }, [params.slug])
+    if (slug) {
+      fetchInvitation()
+    }
+  }, [slug])
 
   // Очистка аудио при размонтировании
   useEffect(() => {
