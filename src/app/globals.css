@@ -1,26 +1,145 @@
-@import "tailwindcss";
+/* Google Fonts Import - ДОЛЖЕН БЫТЬ ПЕРВЫМ */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Allura&family=Alex+Brush&family=Sacramento&family=Pacifico&family=Kaushan+Script&family=Amatic+SC:wght@400;700&family=Caveat:wght@400;500;600;700&family=Shadows+Into+Light&family=Satisfy&family=Courgette&family=Lobster&family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;500;600;700&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Crimson+Text:wght@400;600&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font Classes */
+.font-dancing { font-family: 'Dancing Script', cursive !important; }
+.font-great-vibes { font-family: 'Great Vibes', cursive !important; }
+.font-allura { font-family: 'Allura', cursive !important; }
+.font-alex-brush { font-family: 'Alex Brush', cursive !important; }
+.font-sacramento { font-family: 'Sacramento', cursive !important; }
+.font-satisfy { font-family: 'Satisfy', cursive !important; }
+.font-pacifico { font-family: 'Pacifico', cursive !important; }
+.font-kaushan { font-family: 'Kaushan Script', cursive !important; }
+.font-amatic { font-family: 'Amatic SC', cursive !important; }
+.font-caveat { font-family: 'Caveat', cursive !important; }
+.font-shadows { font-family: 'Shadows Into Light', cursive !important; }
+.font-courgette { font-family: 'Courgette', cursive !important; }
+.font-lobster { font-family: 'Lobster', cursive !important; }
+.font-playfair { font-family: 'Playfair Display', serif !important; }
+.font-crimson { font-family: 'Crimson Text', serif !important; }
+.font-cormorant { font-family: 'Cormorant Garamond', serif !important; }
+.font-roboto { font-family: 'Roboto', sans-serif !important; }
+.font-open-sans { font-family: 'Open Sans', sans-serif !important; }
+.font-lato { font-family: 'Lato', sans-serif !important; }
+.font-montserrat { font-family: 'Montserrat', sans-serif !important; }
+.font-poppins { font-family: 'Poppins', sans-serif !important; }
+.font-inter { font-family: 'Inter', sans-serif !important; }
+
+/* Убедиться что шрифты применяются принудительно */
+[style*="font-family"] {
+  font-display: swap;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Анимации для карты */
+@keyframes mapPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Стили для форм пожеланий */
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af;
+}
+
+input:focus,
+textarea:focus {
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Анимация для сообщения об успешной отправке */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+/* Стили для placeholder в современных полях */
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Стили для слайдера размера фотографий */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #e5e7eb;
+  outline: none;
+  border-radius: 8px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #3b82f6;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #3b82f6;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Анимации для иконок */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes doveWings {
+  0%, 100% { 
+    transform: translateY(0px) rotateY(0deg); 
+  }
+  25% { 
+    transform: translateY(-2px) rotateY(5deg); 
+  }
+  50% { 
+    transform: translateY(-4px) rotateY(10deg); 
+  }
+  75% { 
+    transform: translateY(-2px) rotateY(5deg); 
+  }
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.2); }
 }
