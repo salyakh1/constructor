@@ -1,15 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 
-interface RouteParams {
-  params: {
-    slug: string
-  }
-}
-
-export async function GET(request: NextRequest, { params }: RouteParams) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
+) {
   try {
-    const { slug } = params
+    const { slug } = await params
 
     if (!slug) {
       return NextResponse.json(
@@ -60,9 +57,12 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: RouteParams) {
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
+) {
   try {
-    const { slug } = params
+    const { slug } = await params
 
     if (!slug) {
       return NextResponse.json(
