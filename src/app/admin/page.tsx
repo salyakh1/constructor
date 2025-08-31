@@ -18,7 +18,12 @@ import {
   CheckCircle,
   AlertCircle
 } from 'lucide-react'
-import { QRCodeDisplay } from '@/components/QRCodeDisplay'
+import dynamic from 'next/dynamic'
+
+const QRCodeDisplay = dynamic(() => import('@/components/QRCodeDisplay').then(mod => ({ default: mod.QRCodeDisplay })), {
+  ssr: false,
+  loading: () => <div className="w-[120px] h-[120px] bg-gray-200 rounded animate-pulse" />
+})
 
 interface Invite {
   id: string
@@ -132,7 +137,7 @@ export default function AdminPage() {
 
   const handleCopyLink = async (slug: string) => {
     try {
-      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || window.location.origin
+      const baseUrl = window.location.origin
       const link = `${baseUrl}/invite/${slug}`
       await navigator.clipboard.writeText(link)
       showNotification('success', 'Ссылка скопирована в буфер обмена!')

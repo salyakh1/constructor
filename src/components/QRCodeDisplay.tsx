@@ -10,7 +10,7 @@ interface QRCodeDisplayProps {
 
 export function QRCodeDisplay({ slug, size = 180 }: QRCodeDisplayProps) {
   // Формируем URL для QR-кода
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || (typeof window !== 'undefined' ? window.location.origin : '')
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : ''
   const url = `${baseUrl}/invite/${slug}`
   
   return (

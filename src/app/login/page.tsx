@@ -33,7 +33,7 @@ function LoginForm() {
 
     try {
       // Простая проверка пароля (в продакшене использовать API)
-      const correctPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'wedding2024'
+      const correctPassword = 'wedding2024'
       
       if (password === correctPassword) {
         // Устанавливаем cookie на 24 часа
