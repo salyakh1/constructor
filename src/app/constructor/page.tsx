@@ -1,12 +1,14 @@
 'use client'
 
+export const dynamic = "force-dynamic";
+
 import { useState, useCallback, useRef, useEffect, Suspense } from 'react'
 import { Type, Heart, Calendar, Image, Video, Music, MapPin, Clock, Timer, Users, MessageSquare, Plus, Settings, Upload, Trash2 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { nanoid } from 'nanoid'
-import dynamic from 'next/dynamic'
+import dynamicImport from 'next/dynamic'
 
-const QRCodeDisplay = dynamic(() => import('@/components/QRCodeDisplay').then(mod => ({ default: mod.QRCodeDisplay })), {
+const QRCodeDisplay = dynamicImport(() => import('@/components/QRCodeDisplay').then(mod => ({ default: mod.QRCodeDisplay })), {
   ssr: false,
   loading: () => <div className="w-[120px] h-[120px] bg-gray-200 rounded animate-pulse" />
 })
