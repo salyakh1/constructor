@@ -6,6 +6,7 @@ const nextConfig = {
       allowedOrigins: ['localhost:3000', '*.vercel.app'],
     },
   },
+  output: "standalone",
   trailingSlash: false,
   generateEtags: false,
   poweredByHeader: false,
