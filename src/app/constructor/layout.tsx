@@ -1,12 +1,4 @@
-import type { Metadata } from 'next'
-
-export const dynamic = "force-dynamic";
-export const runtime = 'nodejs';
-
-export const metadata: Metadata = {
-  title: 'Конструктор приглашений',
-  description: 'Создайте красивое свадебное приглашение',
-}
+'use client'
 
 export default function ConstructorLayout({
   children,

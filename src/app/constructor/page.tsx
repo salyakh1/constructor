@@ -1,9 +1,5 @@
-export const dynamic = "force-dynamic";
-export const runtime = 'nodejs';
-export const revalidate = 0;
+import ConstructorPage from '@/components/ConstructorPage'
 
-import ConstructorContent from './ConstructorContent'
-
-export default function ConstructorPage() {
-  return <ConstructorContent />
+export default function Page() {
+  return <ConstructorPage />
 }
