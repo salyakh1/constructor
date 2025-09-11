@@ -1,1 +1,1 @@
-export { QRCodeDisplay } from './QRCodeDisplay'
+export { default as QRCodeDisplay } from './QRCodeDisplay'

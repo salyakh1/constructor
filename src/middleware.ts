@@ -1,36 +1,24 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-// Простая защита паролем для конструктора и админки
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
-  
-  // Защищаем только конструктор и админку
-  if (pathname.startsWith('/constructor') || pathname.startsWith('/admin')) {
-    // Проверяем пароль из cookies или заголовков
-    const authToken = request.cookies.get('auth_token')?.value || 
-                     request.headers.get('authorization')?.replace('Bearer ', '')
+  // Add CORS headers for API routes
+  if (request.nextUrl.pathname.startsWith('/api/')) {
+    const response = NextResponse.next()
     
-    // Простой пароль для демонстрации (в продакшене использовать более сложную систему)
-    const correctPassword = process.env.ADMIN_PASSWORD || 'wedding2024'
+    response.headers.set('Access-Control-Allow-Origin', '*')
+    response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+    response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
     
-    if (authToken !== correctPassword) {
-      // Если нет авторизации, перенаправляем на страницу входа
-      if (pathname.startsWith('/constructor')) {
-        return NextResponse.redirect(new URL('/login?redirect=/constructor', request.url))
-      }
-      if (pathname.startsWith('/admin')) {
-        return NextResponse.redirect(new URL('/login?redirect=/admin', request.url))
-      }
-    }
+    return response
   }
-  
+
   return NextResponse.next()
 }
 
 export const config = {
   matcher: [
-    '/constructor/:path*',
-    '/admin/:path*'
-  ]
+    '/api/:path*',
+    '/((?!_next/static|_next/image|favicon.ico).*)',
+  ],
 }
