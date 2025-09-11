@@ -1,10 +1,10 @@
 export interface BlockContent {
   id: string
   type: string
-  content: any
+  content: Record<string, unknown>
   position: { x: number; y: number }
   size: { width: number; height: number }
-  style?: any
+  style?: Record<string, unknown>
 }
 
 export interface Block {
@@ -13,7 +13,7 @@ export interface Block {
   content: BlockContent
   position: { x: number; y: number }
   size: { width: number; height: number }
-  style?: any
+  style?: Record<string, unknown>
 }
 
 export interface Invitation {
@@ -26,7 +26,7 @@ export interface Invitation {
   updated_at: string
   is_published: boolean
   created_by?: string
-  settings: any
+  settings: Record<string, unknown>
 }
 
 export interface Wish {

@@ -8,7 +8,7 @@ interface QRCodeDisplayProps {
   className?: string
 }
 
-export default function QRCodeDisplay({ 
+function QRCodeDisplay({ 
   value, 
   size = 200, 
   className = '' 
@@ -26,3 +26,6 @@ export default function QRCodeDisplay({
     </div>
   )
 }
+
+export default QRCodeDisplay
+export { QRCodeDisplay }

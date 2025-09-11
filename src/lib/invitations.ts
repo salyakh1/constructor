@@ -5,12 +5,12 @@ export interface Invitation {
   slug: string
   title?: string
   description?: string
-  blocks: any[]
+  blocks: unknown[]
   created_at: string
   updated_at: string
   is_published: boolean
   created_by?: string
-  settings: any
+  settings: Record<string, unknown>
 }
 
 export async function createInvitation(data: Partial<Invitation>) {
