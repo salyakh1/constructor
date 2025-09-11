@@ -2,17 +2,8 @@
   "version": 2,
   "builds": [
     { 
-      "src": "vayconstructor/package.json", 
-      "use": "@vercel/next",
-      "config": {
-        "distDir": ".next"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "vayconstructor/$1"
+      "src": "package.json", 
+      "use": "@vercel/next"
     }
   ]
 }
